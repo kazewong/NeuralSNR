@@ -40,6 +40,15 @@ def get_detect(M1M2s1s2,z,threshold):
 	detect_size = np.sum(pdet[snr>threshold])
 	return snr,pdet,M1M2s1s2[snr>threshold],detect_size/total_size
 
+# ===================================================
+# Run model through the list of catalogue
+# ===================================================
+
+'''
+Given a list of catalogue, compute the optimal SNR for each binaries,
+then select the samples according to selection criteria.
+'''
+
 catalogue_file = open(catalogue_list,'r')
 for catalogue in catalogue_file:
 	output_file = catalogue[:-5]+'_detect'
