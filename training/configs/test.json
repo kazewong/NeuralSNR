@@ -1,0 +1,41 @@
+{
+  "agent": "MLP_Agent",
+	"mode": "train",
+
+	"data": "../data/test.hdf5",
+	"exp_name": "test",
+	"output_model_path": "../data/test.network",
+
+	"hidden_size": 32,
+	"hidden_layers": 3,
+	"learning_rate": 0.0001,
+
+  "batch_size": 500,
+  "test_batch_size": 1000,
+  "max_epoch": 100,
+  "seed": 1337,
+	"log_interval": 1000,
+
+	"input_size":4,
+	"output_size": 1,
+	"act": "relu",
+
+  "cuda": false,
+  "gpu_device": 0,
+
+  "weight_decay": 1e-6,
+  "beta1": 0.5,
+  "beta2": 0.999,
+
+	"output_model": true,
+  "validate_every": 2,
+
+	"load_checkpoint": true,
+  "checkpoint_file": "checkpoint.pth.tar",
+
+  "data_loader": "GWcat_Loader",
+  "data_loader_workers": 2,
+  "pin_memory": true,
+  "async_loading": true
+
+}
