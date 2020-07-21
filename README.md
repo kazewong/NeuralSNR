@@ -34,6 +34,57 @@ This would print the SNR of a 30-30 solar mass event with 0 spins at 100 Mpc. Th
 
 # Training your own network
 
-We encourage users to train their own network. 
+We encourage users to train their own network. There are two steps in doing this: 
+
+1. Preparing data
+2. Defining training configuration
+
+**Preparing data**
+
+The users can use the script [txt_to_train.py](https://github.com/kazewong/NeuralSNR/blob/master/txt_to_train.py) to prepare the training data needed. We need two files to do so, input.txt and output.txt. Each .txt should be in N rows and M column, where N is the number of training sample points and M is the dimension of the input/output parameter space. txt_to_train.py will combine the two files into an .hdf5 which can then be used in training.
+
+We have an exmaple the user can follow by entering the follow command in the root directory of this repo:
+
+`python txt_to_train.py`
+
+This should out a file name `test_random.hdf5` in the data directory.
+
+**Defining training configuration**
+
+Once you have your data file set up, you also need to tell the computer where the relevant files are, and what network configuration you want to use.
+We have an example configuration file located in `~/training/config/test.json`. Here are the lines you need to customize that are related to meta data
+
+```
+"data": "replaced this by your data path",
+"output_model_path": "replaced this by your desire output path",
+"exp_name": "replaced this by the tag you want to give to this training"
+"cuda": false # set true if you want to use a GPU
+"output_model": true # set true if you want to output a callable network
+"load_checkpoint": true, # set true if you want to resume previous training session
+```
+
+Here are the lines related to the architechture of the network
+
+```
+"hidden_size": 32, number of neurons per layer
+"hidden_layers": 3, number of layers
+"learning_rate": 0.0001, step size of each gradient descent step
+"input_size":4, number of input
+"output_size": 1, number of output
+"max_epoch": 100, maximum training epoch, basically how many loops the network is trained.
+```
+In general you would like to change input_size and output_size to fit your data structure. 
+hidden_size and hidden_layers control how large is your model. In general larger model can capture more complicated behaviour, but takes longer and more data to train.
+max_epoch controls how many loops you want to train the network. You want to make sure this is large enough such that your model has converge reasonably well.
+
+Once you have a configuration files, you can run the following command in the training directory
+
+```
+python main.py config_path
+```
+
+This should start the training and output a network at the end of the training.
+
+Training a nueral network could be a daunting concept for people who haven't done it. Please ask for help you need any.
 
 
