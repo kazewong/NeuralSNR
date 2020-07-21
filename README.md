@@ -77,7 +77,7 @@ In general you would like to change input_size and output_size to fit your data 
 hidden_size and hidden_layers control how large is your model. In general larger model can capture more complicated behaviour, but takes longer and more data to train.
 max_epoch controls how many loops you want to train the network. You want to make sure this is large enough such that your model has converge reasonably well.
 
-Once you have a configuration files, you can run the following command in the training directory
+Once you have a configuration files, you can run the following command in the `training` directory
 
 ```
 python main.py config_path
