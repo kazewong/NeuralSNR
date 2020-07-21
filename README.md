@@ -20,8 +20,18 @@ Please also find relevant packages used in the pytorch project template repo.
 
 # Using pretrained model
 
-**Disclaimer: we encourage the use of our network only for prototyping purposes. For any publication-level calculation, we strongly recommend users to train their own network. The performance and accuracy of a neural network crictically depends on the training data, and there is no single set of assumptions fitting in any analysis. The goal of our paper is to encourage the community to use neural networks in GW applications, not to answer particular scientific questions. SO TRAIN YOUR OWN NETWORK. You have been warned :).**
+**Disclaimer: we encourage the use of our network only for prototyping purposes. For any publication-level calculation, we strongly recommend users to train their own network. The performance and accuracy of a neural network crictically depends on the training data, and there is no single set of assumptions fitting in any analysis. The goal of our paper is to encourage the community to use neural networks in more common GW tasks, not to answer particular scientific questions. SO TRAIN YOUR OWN NETWORK. You have been warned :).**
 
+Calling the pretrained model is pretty strightforward. As a example, let's call the SNR using the A+-PhenomD pretrained model.
 
+```
+import torch
+model = torch.jit.load('./network/AplusDesign_IMRPhenomD.network',map_location='cpu')
+print(model(torch.tensor([[30,1,0,0]]).float())
+```
+
+This would print the SNR of a 30-30 solar mass event with 0 spins at 100 Mpc. The four inputs are (M_1,q,chi_1,chi_2). A more detail tutorial of the usage of the pretrained network can be found in [tutorial](https://github.com/kazewong/NeuralSNR/blob/master/tutorial.ipynb) 
 
 # Training your own network
+
+
