@@ -34,4 +34,6 @@ This would print the SNR of a 30-30 solar mass event with 0 spins at 100 Mpc. Th
 
 # Training your own network
 
+We encourage users to train their own network. 
+
 
