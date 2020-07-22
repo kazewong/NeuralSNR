@@ -22,7 +22,7 @@ Please also find relevant packages used in the pytorch project template repo.
 
 **Disclaimer: we encourage the use of our network only for prototyping purposes. For any publication-level calculation, we strongly recommend users to train their own network. The performance and accuracy of a neural network crictically depends on the training data, and there is no single set of assumptions fitting in any analysis. The goal of our paper is to encourage the community to use neural networks in more common GW tasks, not to answer particular scientific questions. SO TRAIN YOUR OWN NETWORK. You have been warned :).**
 
-Calling the pretrained model is pretty strightforward. As a example, let's call the SNR using the A+-PhenomD pretrained model.
+Calling the pretrained model is pretty strightforward. As an example, let's call the SNR using the A+-PhenomD pretrained model.
 
 ```
 import torch
@@ -30,24 +30,24 @@ model = torch.jit.load('./network/AplusDesign_IMRPhenomD.network',map_location='
 print(model(torch.tensor([[30,1,0,0]]).float())
 ```
 
-This would print the SNR of a 30-30 solar mass event with 0 spins at 100 Mpc. The four inputs are (M_1,q,chi_1,chi_2). A more detail tutorial of the usage of the pretrained network can be found in [tutorial](https://github.com/kazewong/NeuralSNR/blob/master/tutorial.ipynb) 
+This would print the SNR of a 30-30 solar mass event with dimensionless spins equal to zero at 100 Mpc. The four inputs are (M_1,q,chi_1,chi_2). A more detailed tutorial of the usage of the pretrained network can be found in [tutorial](https://github.com/kazewong/NeuralSNR/blob/master/tutorial.ipynb) 
 
 # Training your own network
 
 We encourage users to train their own network. There are two steps in doing this: 
 
 1. Preparing data
-2. Defining training configuration
+2. Defining the training configuration
 
 **Preparing data**
 
-The users can use the script [txt_to_train.py](https://github.com/kazewong/NeuralSNR/blob/master/txt_to_train.py) to prepare the training data needed. We need two files to do so, input.txt and output.txt. Each .txt should be in N rows and M column, where N is the number of training sample points and M is the dimension of the input/output parameter space. txt_to_train.py will combine the two files into an .hdf5 which can then be used in training.
+The users can use the script [txt_to_train.py](https://github.com/kazewong/NeuralSNR/blob/master/txt_to_train.py) to prepare the training data needed. We need two files to do so, input.txt and output.txt. Each .txt should be in N rows and M columns, where N is the number of training sample points and M is the dimension of the input/output parameter space. txt_to_train.py will combine the two files into an .hdf5 which can then be used in training.
 
-We have an exmaple the user can follow by entering the follow command in the root directory of this repo:
+As an example, the user can enter the following command in the root directory of this repo:
 
 `python txt_to_train.py`
 
-This should out a file name `test_random.hdf5` in the data directory.
+This should output a file name `test_random.hdf5` in the data directory.
 
 **Defining training configuration**
 
@@ -74,8 +74,8 @@ Here are the lines related to the architechture of the network
 "max_epoch": 100, maximum training epoch, basically how many loops the network is trained.
 ```
 In general you would like to change input_size and output_size to fit your data structure. 
-hidden_size and hidden_layers control how large is your model. In general larger model can capture more complicated behaviour, but takes longer and more data to train.
-max_epoch controls how many loops you want to train the network. You want to make sure this is large enough such that your model has converge reasonably well.
+hidden_size and hidden_layers control how large is your model. In general larger models can capture more complicated behavior, but they take longer and need more data to train.
+max_epoch controls how many loops you want to train the network. You want to make sure this is large enough that your model has converged reasonably well.
 
 Once you have a configuration files, you can run the following command in the `training` directory
 
@@ -85,6 +85,6 @@ python main.py config_path
 
 This should start the training and output a network at the end of the training.
 
-Training a nueral network could be a daunting concept for people who haven't done it. Please ask for help you need any.
+Training a neural network could be daunting if you have never done it before. Please ask for help you need any.
 
 
