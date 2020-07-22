@@ -10,7 +10,7 @@ The code is developed and maintained by [Kaze Wong](https://github.com/kazewong)
 
 The pytorch template used for training is from [PyTorch Project Template](https://github.com/moemen95/PyTorch-Project-Template)
 
-# Prerequiste
+# Prerequisites
 
 This code depends on the following packages:
 
@@ -49,7 +49,7 @@ As an example, the user can enter the following command in the root directory of
 
 This should output a file name `test_random.hdf5` in the data directory.
 
-**Defining training configuration**
+**Defining the training configuration**
 
 Once you have your data file set up, you also need to tell the computer where the relevant files are, and what network configuration you want to use.
 We have an example configuration file located in `~/training/config/test.json`. Here are the lines you need to customize that are related to meta data
